@@ -1,3 +1,4 @@
+//Aligns the text and integers correctly
 public class Song
 {
     private String title;
@@ -49,7 +50,7 @@ public class Song
         return genre;
     }
 
-    // toString (one row format)
+    // toString Method
     public String toString()
     {
         return String.format("%-30s %-20s %-25s %-6d %-15s",
