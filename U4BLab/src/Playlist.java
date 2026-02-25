@@ -61,6 +61,71 @@ public class Playlist
             result += songs.get(i).getGenre() + "\n";
         }
 
+    // Linear Search by genre method
+    public void searchByGenre(String genre)
+    {
+        boolean found = false;
+    
+        for (int i = 0; i < songs.size(); i++)
+        {
+            if (songs.get(i).getGenre().equalsIgnoreCase(genre))
+            {
+                System.out.println(songs.get(i));
+                found = true;
+            }
+        }
+
+    // Selection Sort by artist (A-Z)
+    public void sortByArtist()
+    {
+        for (int i = 0; i < songs.size() - 1; i++)
+        {
+            int minIndex = i;
+    
+            for (int j = i + 1; j < songs.size(); j++)
+            {
+                if (songs.get(j).getArtist().compareToIgnoreCase(
+                    songs.get(minIndex).getArtist()) < 0)
+                {
+                    minIndex = j;
+                }
+            }
+    
+            // swap
+            Song temp = songs.get(i);
+            songs.set(i, songs.get(minIndex));
+            songs.set(minIndex, temp);
+        }
+    
+        System.out.println("Sorted by artist (A-Z).");
+    }
+
+    // Insertion Sort by release year (old to new)
+    public void sortByReleaseYear()
+    {
+        for (int i = 1; i < songs.size(); i++)
+        {
+            Song key = songs.get(i);
+            int j = i - 1;
+    
+            while (j >= 0 && songs.get(j).getReleaseYear() > key.getReleaseYear())
+            {
+                songs.set(j + 1, songs.get(j));
+                j--;
+            }
+    
+            songs.set(j + 1, key);
+        }
+    
+        System.out.println("Sorted by release year (old to new).");
+    }
+
+    if (!found)
+    {
+        System.out.println("No songs found in that genre.");
+    }
+}
+
         return result;
     }
 }
