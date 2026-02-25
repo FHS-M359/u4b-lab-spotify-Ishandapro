@@ -50,7 +50,7 @@ public class Playlist
         String result = "";
 
         result += "Title | Artist | Album | Year | Genre\n";
-        result += ;
+        result += "-------------------------------------------------------------\n";
 
         for (int i = 0; i < songs.size(); i++)
         {
