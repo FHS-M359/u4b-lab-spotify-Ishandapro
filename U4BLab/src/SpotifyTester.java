@@ -28,10 +28,12 @@ public class SpotifyTester
                 if (choice == SORT_ARTIST)
                 {
                     p.sortByArtist();
+                    System.out.println(p);
                 }
                 else if (choice == SORT_YEAR)
                 {
                     p.sortByReleaseYear();
+                    System.out.println(p);
                 }
                 else if (choice == SEARCH_GENRE)
                 {
