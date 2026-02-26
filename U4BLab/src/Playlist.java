@@ -44,28 +44,30 @@ public class Playlist
         }
     }
 
-    // The .toString method for splitting
+    // The .toString method
     public String toString()
     {
         String result = "";
 
-        result += "Title | Artist | Album | Year | Genre\n";
-        result += "-------------------------------------------------------------\n";
+        result += String.format("%-30s %-20s %-30s %-6s %-15s%n",
+                "Title", "Artist", "Album", "Year", "Genre");
+        result += "-----------------------------------------------------------------------------------------------\n";
 
         for (int i = 0; i < songs.size(); i++)
         {
-            result += songs.get(i).getTitle() + " | ";
-            result += songs.get(i).getArtist() + " | ";
-            result += songs.get(i).getAlbum() + " | ";
-            result += songs.get(i).getReleaseYear() + " | ";
-            result += songs.get(i).getGenre() + "\n";
+            Song s = songs.get(i);
+            result += String.format("%-30s %-20s %-30s %-6d %-15s%n",
+                    s.getTitle(), s.getArtist(), s.getAlbum(), s.getReleaseYear(), s.getGenre());
         }
+
+        return result;
+    }
 
     // Linear Search by genre method
     public void searchByGenre(String genre)
     {
         boolean found = false;
-    
+
         for (int i = 0; i < songs.size(); i++)
         {
             if (songs.get(i).getGenre().equalsIgnoreCase(genre))
@@ -75,29 +77,38 @@ public class Playlist
             }
         }
 
+        if (!found)
+        {
+            System.out.println("No songs found in that genre.");
+        }
+    }
+
     // Selection Sort by artist (A-Z)
     public void sortByArtist()
     {
         for (int i = 0; i < songs.size() - 1; i++)
         {
             int minIndex = i;
-    
+
             for (int j = i + 1; j < songs.size(); j++)
             {
                 if (songs.get(j).getArtist().compareToIgnoreCase(
-                    songs.get(minIndex).getArtist()) < 0)
+                        songs.get(minIndex).getArtist()) < 0)
                 {
                     minIndex = j;
                 }
             }
-    
-            // swap
+
             Song temp = songs.get(i);
             songs.set(i, songs.get(minIndex));
             songs.set(minIndex, temp);
         }
-    
-        System.out.println("Sorted by artist (A-Z).");
+
+        // DISPLAY ONLY ARTISTS
+        for (int i = 0; i < songs.size(); i++)
+        {
+            System.out.println(songs.get(i).getArtist());
+        }
     }
 
     // Insertion Sort by release year (old to new)
@@ -107,25 +118,14 @@ public class Playlist
         {
             Song key = songs.get(i);
             int j = i - 1;
-    
+
             while (j >= 0 && songs.get(j).getReleaseYear() > key.getReleaseYear())
             {
                 songs.set(j + 1, songs.get(j));
                 j--;
             }
-    
+
             songs.set(j + 1, key);
         }
-    
-        System.out.println("Sorted by release year (old to new).");
-    }
-
-    if (!found)
-    {
-        System.out.println("No songs found in that genre.");
-    }
-}
-
-        return result;
     }
 }
